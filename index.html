@@ -2,14 +2,12 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Zona Cute">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
 
 <link rel="apple-touch-icon" href="https://i.postimg.cc/25yFj1xg/F27C99A8-5B4E-4848-A411-60A672E2025E.png">
-<link rel="icon" type="image/png" href="https://i.postimg.cc/25yFj1xg/F27C99A8-5B4E-4848-A411-60A672E2025E.png">
 
 <title>Zona Cute</title>
 
@@ -17,58 +15,34 @@
 body{
 margin:0;
 padding:18px;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+font-family:-apple-system, sans-serif;
 background:linear-gradient(180deg,#ffeef6,#fff8fb);
 color:#8a4f68;
 }
-
-h1{
-text-align:center;
-color:#d86f9d;
-font-size:30px;
-}
-
+h1{text-align:center;color:#d86f9d;}
 .card{
 background:white;
-border-radius:24px;
-padding:18px;
-margin:14px 0;
-box-shadow:0 8px 20px rgba(216,111,157,.18);
+border-radius:20px;
+padding:15px;
+margin:12px 0;
 }
-
-label{
-font-weight:bold;
-}
-
-input, select, button{
+select,button{
 width:100%;
-padding:14px;
-margin-top:8px;
-margin-bottom:14px;
-border-radius:16px;
-border:1px solid #ffd6e6;
-font-size:17px;
+padding:12px;
+margin-top:10px;
+border-radius:12px;
 }
-
 button{
 background:#f59ac2;
 color:white;
 font-weight:bold;
 border:none;
 }
-
 .result{
+margin-top:10px;
 background:#fff0f7;
-padding:15px;
-border-radius:18px;
-font-size:18px;
-text-align:center;
-}
-
-.small{
-text-align:center;
-font-size:14px;
-color:#b06b87;
+padding:10px;
+border-radius:12px;
 }
 </style>
 </head>
@@ -76,50 +50,64 @@ color:#b06b87;
 <body>
 
 <h1>Zona Cute 💕</h1>
-<p class="small">Calcolatore semplice per dieta Zona</p>
 
 <div class="card">
-<label>Quanti blocchi vuoi fare?</label>
+<label>Blocchi</label>
 <select id="blocchi">
-<option value="1">1 blocco</option>
-<option value="2">2 blocchi</option>
-<option value="3">3 blocchi</option>
-<option value="4">4 blocchi</option>
-<option value="5">5 blocchi</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
 </select>
-
-<button onclick="calcola()">Calcola quantità base</button>
-
-<div class="result" id="risultato">
-Scegli i blocchi e premi calcola 💗
-</div>
 </div>
 
 <div class="card">
-<h3>Promemoria blocco Zona</h3>
-<p>1 blocco = circa:</p>
-<p>🥩 7 g proteine</p>
-<p>🍎 9 g carboidrati</p>
-<p>🥑 3 g grassi</p>
+<h3>Proteine</h3>
+<select id="proteine">
+<option value="30">Pollo (petto) 30g</option>
+<option value="35">Tacchino 30g</option>
+<option value="20">Bresaola 20g</option>
+<option value="30">Tonno 30g</option>
+<option value="40">Salmone 40g</option>
+</select>
 </div>
 
 <div class="card">
-<h3>Esempio rapido</h3>
-<p><b>3 blocchi</b> = 21 g proteine, 27 g carboidrati, 9 g grassi.</p>
+<h3>Carboidrati</h3>
+<select id="carbo">
+<option value="90">Mela 90g</option>
+<option value="100">Kiwi 100g</option>
+<option value="120">Pane 15g</option>
+<option value="50">Riso 11g</option>
+</select>
 </div>
+
+<div class="card">
+<h3>Grassi</h3>
+<select id="grassi">
+<option value="1.5">Olio EVO 1.5g</option>
+<option value="3">Mandorle 3g</option>
+<option value="5">Olive 5g</option>
+</select>
+</div>
+
+<button onclick="calcola()">Calcola</button>
+
+<div class="result" id="risultato"></div>
 
 <script>
 function calcola(){
 let b = Number(document.getElementById("blocchi").value);
-let proteine = b * 7;
-let carbo = b * 9;
-let grassi = b * 3;
+
+let p = document.getElementById("proteine").value * b;
+let c = document.getElementById("carbo").value * b;
+let g = document.getElementById("grassi").value * b;
 
 document.getElementById("risultato").innerHTML =
-"<b>" + b + " blocchi</b><br><br>" +
-"🥩 Proteine: " + proteine + " g<br>" +
-"🍎 Carboidrati: " + carbo + " g<br>" +
-"🥑 Grassi: " + grassi + " g";
+"<b>Per " + b + " blocchi:</b><br><br>" +
+"🥩 Proteine: " + p + " g<br>" +
+"🍎 Carbo: " + c + " g<br>" +
+"🥑 Grassi: " + g + " g";
 }
 </script>
 
